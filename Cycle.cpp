@@ -21,21 +21,35 @@ namespace CycleNotation {
     }
 
     /**
-     * Cycle::simplify
      *
-     * @param reader1 pointer to the first element in the cycle to simply
-     * @param end1 pointer to "element" after the last element in the cycle to simplify - a pointer to just after the end
-     * @param writer buffer in which to write the result of the simplify operation
-     * @return position of writer after done writing
+     * @param reader
+     * @param end
+     * @param writer
+     * @return
      */
-    char *Cycle::simplify(char *reader1, const char *end1, char *writer) {// char *reader2, const char *end2) {
+    char *Cycle::simplify(char *reader, char *end, char *writer) {
+        return Cycle::simplify(reader, end, nullptr, nullptr, writer);
+    }
+
+    /**
+     *
+     * @param reader1
+     * @param end1
+     * @param reader2
+     * @param end2
+     * @param writer
+     * @return
+     */
+    char *Cycle::simplify(char *reader1, char *end1, char *reader2, char *end2, char *writer) {
+        char *reader = reader1, *end = end1;
         char last_written = 0;
-        char whole_cycle_max = 0, sub_cycle_max = 0; // The biggest element over all subcycles
+        char whole_cycle_max = 0, sub_cycle_max = 0;
         char map_old[255], map_new[255];
         char first_in_cycle = 0, previous = 0, current;
 
-        while (reader1 < end1) {
-            current = *(reader1++);
+        which_read:
+        while (reader < end) {
+            current = *(reader++);
             if (current == 0) { // do the stuff to combine the two layers
                 map_new[previous] = first_in_cycle; // tying up loose end
                 for (char i = 1; i <= whole_cycle_max; i++) {
@@ -65,24 +79,29 @@ namespace CycleNotation {
                 }
             }
         }
+        if (end == end1) {
+            reader = reader2;
+            end = end2;
+            goto which_read;
+        }
         // When you're done you should be able to look at the first array to get the actual values
         // free original underlying array if you owned it
-        reader1 = map_old + 1;
-        end1 = map_old + whole_cycle_max + 1;
-        while (reader1 < end1) {
-            current = *reader1;
-            *reader1 = (char) (reader1 - map_old); // Shortening conversion should be fine as long as reader1 doesn't get too big
-            if (current == (reader1 - map_old)) {
+        reader = map_old + 1;
+        end = map_old + whole_cycle_max + 1;
+        while (reader < end) {
+            current = *reader;
+            *reader = (char) (reader - map_old); // Shortening conversion should be fine as long as reader doesn't get too big
+            if (current == (reader - map_old)) {
                 if (!last_written) {
-                    reader1++;
+                    reader++;
                     continue;
                 } else {
                     *(writer++) = (last_written = 0);
-                    reader1++;
+                    reader++;
                 }
             } else {
                 *(writer++) = (last_written = current);
-                reader1 = map_old + current;
+                reader = map_old + current;
             }
         }
 
