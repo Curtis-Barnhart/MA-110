@@ -21,28 +21,34 @@ namespace CycleNotation {
     }
 
     /**
+     * Cycle::simplify reduces an array representing cyclic notation elements of a group to use as few cycles as
+     * possible, writing the result into a provided buffer. It does not check the length of the provided buffer,
+     * but does return a pointer to after the last element it wrote in the buffer.
      *
-     * @param reader
-     * @param end
-     * @param writer
-     * @return
+     * @param reader pointer to the beginning of the array of cyclic notation elements to read.
+     * @param end pointer to after the last element of the array of cyclic notation elements to read.
+     * @param writer pointer to the buffer to place the result in.
+     * @return pointer to after where the method finished writing in the buffer.
      */
     char *Cycle::simplify(char *reader, char *end, char *writer) {
         return Cycle::simplify(reader, end, nullptr, nullptr, writer);
     }
 
     /**
+     * Cycle::simplify reduces two arrays representing cyclic notation elements of a group to use as few cycles
+     * as possible, writing the result into a provided buffer. It does not check the length of the provided buffer,
+     * but does return a pointer to after the last element it wrote in the buffer.
      *
-     * @param reader1
-     * @param end1
-     * @param reader2
-     * @param end2
-     * @param writer
-     * @return
+     * @param reader1 pointer to the beginning of the first array of cyclic notation elements to be read.
+     * @param end1 pointer to after the last element of the first array of cyclic notation elements to read.
+     * @param reader2 pointer to the beginning of the second array of cyclic notation elements to be read.
+     * @param end2 pointer to after the last element of the second array of cyclic notation elements to read.
+     * @param writer pointer to the buffer to place the result in.
+     * @return pointer to after where the method finished writing in the buffer.
      */
     char *Cycle::simplify(char *reader1, char *end1, char *reader2, char *end2, char *writer) {
         char *reader = reader1, *end = end1;
-        char last_written = 0;
+        char last_written = 1;
         char whole_cycle_max = 0, sub_cycle_max = 0;
         char map_old[255], map_new[255];
         char first_in_cycle = 0, previous = 0, current;
@@ -51,7 +57,9 @@ namespace CycleNotation {
         while (reader < end) {
             current = *(reader++);
             if (current == 0) { // do the stuff to combine the two layers
-                map_new[previous] = first_in_cycle; // tying up loose end
+                if (first_in_cycle) { // only tie up loose end if there is a loose end to tie up
+                    map_new[previous] = first_in_cycle; // tying up loose end
+                }
                 for (char i = 1; i <= whole_cycle_max; i++) {
                     map_old[i] = map_new[map_old[i]];
                 }
@@ -112,7 +120,7 @@ namespace CycleNotation {
         return writer;
     }
 
-    int Cycle::apply(int value) {
+    char Cycle::apply(char value) {
 
     }
 } // CycleNotation

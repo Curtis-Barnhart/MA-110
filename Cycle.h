@@ -13,11 +13,11 @@ namespace CycleNotation {
             bool ownership;
 
         public:
-            static char *simplify(char *reader, char *end, char *reader2, char *end2, char *writer);
+            static char *simplify(char *reader1, char *end1, char *reader2, char *end2, char *writer);
             static char *simplify(char *reader, char *end, char *writer); // TODO: move this to private after done debugging
             Cycle (char *cycles, char length, bool ownership);
             ~Cycle();
-            int apply(int value);
+            char apply(char value);
     };
 
 } // CycleNotation
