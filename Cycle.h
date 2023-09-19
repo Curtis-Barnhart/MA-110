@@ -17,7 +17,7 @@ namespace CycleNotation {
             static char *simplify(char *reader, char *end, char *writer); // TODO: move this to private after done debugging
             Cycle (char *cycles, char length, bool ownership);
             ~Cycle();
-            int apply(int value);
+            char apply(char value);
     };
 
 } // CycleNotation
