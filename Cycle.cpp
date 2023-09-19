@@ -42,7 +42,7 @@ namespace CycleNotation {
      */
     char *Cycle::simplify(char *reader1, char *end1, char *reader2, char *end2, char *writer) {
         char *reader = reader1, *end = end1;
-        char last_written = 0;
+        char last_written = 1;
         char whole_cycle_max = 0, sub_cycle_max = 0;
         char map_old[255], map_new[255];
         char first_in_cycle = 0, previous = 0, current;
@@ -51,7 +51,9 @@ namespace CycleNotation {
         while (reader < end) {
             current = *(reader++);
             if (current == 0) { // do the stuff to combine the two layers
-                map_new[previous] = first_in_cycle; // tying up loose end
+                if (first_in_cycle) { // only tie up loose end if there is a loose end to tie up
+                    map_new[previous] = first_in_cycle; // tying up loose end
+                }
                 for (char i = 1; i <= whole_cycle_max; i++) {
                     map_old[i] = map_new[map_old[i]];
                 }

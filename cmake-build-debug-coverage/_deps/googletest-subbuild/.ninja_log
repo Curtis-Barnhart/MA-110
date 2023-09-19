@@ -1,0 +1,21 @@
+# ninja log v5
+0	24	1695056435725737357	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir	8ddc16c6f8fc7fa6
+1441	1455	1695056437157182698	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch	f6d0acbbc2f28c77
+0	24	1695056435725737357	/Users/curtisbarnhart/CLionProjects/Algebra/cmake-build-debug-coverage/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir	8ddc16c6f8fc7fa6
+24	1426	1695056437128305785	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download	9d0c78ea03d435ed
+1509	1527	1695056437229199964	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done	993f088ab1f5712d
+1455	1469	1695056437170693992	/Users/curtisbarnhart/CLionProjects/Algebra/cmake-build-debug-coverage/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure	622b684d0ae51b22
+1496	1509	1695056437211006673	/Users/curtisbarnhart/CLionProjects/Algebra/cmake-build-debug-coverage/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test	3cd7c77e8691c92f
+1509	1527	1695056437229199964	/Users/curtisbarnhart/CLionProjects/Algebra/cmake-build-debug-coverage/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done	993f088ab1f5712d
+1426	1441	1695056437142836135	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update	b95cce3b89656c8d
+1426	1441	1695056437142836135	/Users/curtisbarnhart/CLionProjects/Algebra/cmake-build-debug-coverage/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update	b95cce3b89656c8d
+1496	1509	1695056437211006673	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test	3cd7c77e8691c92f
+1455	1469	1695056437170693992	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure	622b684d0ae51b22
+1441	1455	1695056437157182698	/Users/curtisbarnhart/CLionProjects/Algebra/cmake-build-debug-coverage/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch	f6d0acbbc2f28c77
+1482	1495	1695056437197423631	/Users/curtisbarnhart/CLionProjects/Algebra/cmake-build-debug-coverage/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install	cddb53b790af2202
+1469	1482	1695056437184091581	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build	a327a50ef26a7fab
+1509	1527	1695056437229199964	/Users/curtisbarnhart/CLionProjects/Algebra/cmake-build-debug-coverage/_deps/googletest-subbuild/CMakeFiles/googletest-populate-complete	993f088ab1f5712d
+1469	1482	1695056437184091581	/Users/curtisbarnhart/CLionProjects/Algebra/cmake-build-debug-coverage/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build	a327a50ef26a7fab
+24	1426	1695056437128305785	/Users/curtisbarnhart/CLionProjects/Algebra/cmake-build-debug-coverage/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download	9d0c78ea03d435ed
+1482	1495	1695056437197423631	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install	cddb53b790af2202
+1509	1527	1695056437229199964	CMakeFiles/googletest-populate-complete	993f088ab1f5712d
