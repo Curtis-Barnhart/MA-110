@@ -8,12 +8,25 @@
 #include "Cycle.h"
 
 namespace CycleNotation {
+    /**
+     * Constructor allows you to make a new Cycle object if you have an array of chars that represents a valid cycle.
+     * The Constructor does not simplify an array that could be simplified.
+     * The Constructor remembers ownership of the array of cycles given - if it is owned by the object, the object on
+     * destruction will free the array.
+     *
+     * @param cycles
+     * @param length
+     * @param ownership
+     */
     Cycle::Cycle(char *cycles, char length, bool ownership) {
         this->cycles = cycles;
         this->length = length;
         this->ownership = ownership;
     }
 
+    /**
+     * The Destructor will free the underlying array of cycles if the object has ownership of it.
+     */
     Cycle::~Cycle() {
         if (this->ownership) {
             free(this->cycles);
@@ -30,8 +43,8 @@ namespace CycleNotation {
      * @param writer pointer to the buffer to place the result in.
      * @return pointer to after where the method finished writing in the buffer.
      */
-    char *Cycle::simplify(char *reader, char *end, char *writer) {
-        return Cycle::simplify(reader, end, nullptr, nullptr, writer);
+    char *simplify(char *reader, char *end, char *writer) {
+        return CycleNotation::simplify(reader, end, nullptr, nullptr, writer);
     }
 
     /**
@@ -46,7 +59,7 @@ namespace CycleNotation {
      * @param writer pointer to the buffer to place the result in.
      * @return pointer to after where the method finished writing in the buffer.
      */
-    char *Cycle::simplify(char *reader1, char *end1, char *reader2, char *end2, char *writer) {
+    char *simplify(char *reader1, char *end1, char *reader2, char *end2, char *writer) {
         char *reader = reader1, *end = end1;
         char last_written = 1;
         char whole_cycle_max = 0, sub_cycle_max = 0;
@@ -120,7 +133,54 @@ namespace CycleNotation {
         return writer;
     }
 
-    char Cycle::apply(char value) {
+    /**
+     * Evaluates how a single item is transformed according to a cycle.
+     *
+     * @param value element to transform.
+     * @return transformation of value.
+     */
+    char apply(char value, char *reader, char *end) {
+        char current, first_in_cycle;
+        enum STATE {SEEK_VALUE, SEEK_ZERO, SET_FIRST_IN_CYCLE, SET_VALUE};
+        STATE state = SET_FIRST_IN_CYCLE;
 
+        while (reader < end) {
+            current = *(reader++);
+            switch (state) {
+                case SEEK_VALUE:
+                    if (current == 0) {
+                        state = SET_FIRST_IN_CYCLE;
+                    } else if (current == value) {
+                        state = SET_VALUE;
+                    }
+                    break;
+                case SEEK_ZERO:
+                    if (current == 0) {
+                        state = SET_FIRST_IN_CYCLE;
+                    }
+                    break;
+                case SET_FIRST_IN_CYCLE:
+                    if (current == 0) {
+                        continue;
+                    } if (current == value) {
+                        state = SET_VALUE;
+                    } else {
+                        first_in_cycle = current;
+                        state = SEEK_VALUE;
+                    }
+                    break;
+                case SET_VALUE:
+                    if (current == 0) {
+                        value = first_in_cycle;
+                        state = SET_FIRST_IN_CYCLE;
+                    } else {
+                        value = current;
+                        state = SEEK_ZERO;
+                    }
+                    break;
+            }
+        }
+
+        return value;
     }
 } // CycleNotation

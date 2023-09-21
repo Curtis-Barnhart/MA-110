@@ -6,6 +6,11 @@
 #define ALGEBRA_CYCLE_H
 
 namespace CycleNotation {
+    char *simplify(char *reader1, char *end1, char *reader2, char *end2, char *writer);
+    char *simplify(char *reader, char *end, char *writer);
+
+    char apply(char value, char *reader, char *end);
+
     class Cycle {
         private:
             char *cycles;
@@ -13,11 +18,11 @@ namespace CycleNotation {
             bool ownership;
 
         public:
-            static char *simplify(char *reader1, char *end1, char *reader2, char *end2, char *writer);
-            static char *simplify(char *reader, char *end, char *writer); // TODO: move this to private after done debugging
+//            static char *simplify(char *reader1, char *end1, char *reader2, char *end2, char *writer);
+//            static char *simplify(char *reader, char *end, char *writer); // TODO: move this to private after done debugging
             Cycle (char *cycles, char length, bool ownership);
             ~Cycle();
-            char apply(char value);
+//            char apply(char value);
     };
 
 } // CycleNotation
