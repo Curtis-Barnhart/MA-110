@@ -18,5 +18,4 @@ FetchContent_MakeAvailable(googletest)
 # Now simply link against gtest or gtest_main as needed. Eg
 add_executable(CycleTest Tests/CycleTest.cpp Cycle.cpp)
 target_link_libraries(CycleTest gtest_main)
-#add_test(NAME one_source_array COMMAND CycleTest)
-#add_test(NAME two_source_array COMMAND CycleTest)
+
